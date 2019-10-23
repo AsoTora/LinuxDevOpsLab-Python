@@ -19,6 +19,7 @@ source ~/.bashrc
 
 pyenv install 2.7.17
 pyenv install 3.7.4
+pyenv global 3.7.4
 
 # pyenv-virtualenv
 git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
@@ -27,13 +28,12 @@ git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/py
 sudo apt install -y python-pip python3-pip python-virtualenv python3-virtualenv
 
 # make environments
-pyenv virtualenv 2.7.17
-pyenv virtualenv 3.7.4
+pyenv virtualenv 2.7.17 venv2.7.17
+pyenv virtualenv 3.7.4 venv3.7.4
 
+# local envs
 mkdir venv2.7 && echo "Virtualenv directory" > venv2.7/README
 mkdir venv3.7 && echo "Virtualenv directory" > venv3.7/README
 
 virtualenv --prompt="2.7.17" venv2.7
 virtualenv --prompt="3.7.4" venv3.7virt
-
-
