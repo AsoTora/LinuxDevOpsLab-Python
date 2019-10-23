@@ -36,4 +36,4 @@ mkdir venv2.7 && echo "Virtualenv directory" > venv2.7/README
 mkdir venv3.7 && echo "Virtualenv directory" > venv3.7/README
 
 virtualenv --prompt="2.7.17" venv2.7
-virtualenv --prompt="3.7.4" venv3.7virt
+virtualenv --prompt="3.7.4" venv3.7
