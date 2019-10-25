@@ -108,8 +108,7 @@ venv.bak/
 
 # personal folder
 Personal/
-Hometask1/
-Hometask2/
+Hometask*
 
 # code
 .vscode
