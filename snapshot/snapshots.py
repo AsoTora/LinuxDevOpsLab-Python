@@ -4,8 +4,6 @@ import psutil
 
 # default
 import time
-import sys
-import os
 from psutil._common import bytes2human
 import configparser
 import json
@@ -152,7 +150,3 @@ def run():
 
         c += 1
         time.sleep(60 * interval)
-
-
-if __name__ == '__main__':
-    run()
