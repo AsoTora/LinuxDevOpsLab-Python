@@ -1,26 +1,12 @@
 # Overview
-Create script to get PR(Pull Request) statistics from GitHub. By Andrei Shvedau
 
-## Usage
-``` 
-./github.py [options] <user> [<repo>] 
-./github.py --version 
-./github.py (-h | --help)
-```
-
-### Defaults
-Username -- requiered.
-
-Repository -- https://github.com/octocat/Hello-World
-
-### Example
-![img1](usage.png)
-
-## Options
-
-- Show help. 
-- Print the program's installed version  
-- User who opened. 
-- Day of the week opened.
-- Number of days opened. 
-
+A a script that outputs information about the current versions of python in the system:
+1. version
+2. virtual environment (name)
+3. python executable location
+4. pip location (each python version has its own version of pip)
+5. PYTHONPATH
+6. installed packages: name, version
+7. site-packages location
+Script should output result to *.json and *.yaml files.
+Additional task (optional): Output info about all python versions and environ
