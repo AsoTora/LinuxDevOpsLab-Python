@@ -3,9 +3,9 @@ Create script to get PR(Pull Request) statistics from GitHub. By Andrei Shvedau
 
 ## Usage
 ``` 
-pr-stats [options] <user> [<repo>] 
-pr-stats --version 
-pr-stats (-h | --help)
+./github.py [options] <user> [<repo>] 
+./github.py --version 
+./github.py (-h | --help)
 ```
 
 ### Defaults
