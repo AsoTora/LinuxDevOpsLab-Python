@@ -43,7 +43,7 @@ def decode():
         base.append(chr(c))
 
     indeces = dict(zip([i for i in range(1, 28)], [chr(c) for c in range(97, 122 + 1)]))  # a..z
-    indeces[27] = ' '
+    indeces[0] = ' '
 
     mess = ""
     for i in range(len(inp)):
