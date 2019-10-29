@@ -30,9 +30,6 @@ def get_args():
     parser.add_argument('username', help="set github username", default=None)
     parser.add_argument('repo', nargs='?', default='Hello-World')
     args = parser.parse_args()
-
-    repo = args.repo
-    user = args.username
     return args
 
 
