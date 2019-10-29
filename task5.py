@@ -6,7 +6,6 @@ def keybord():
     keys = "qwertyuiopasdfghjklzxcvbnm"
 
     for c in range(100):  # only 100 tries before collapse
-        print(c)
         k = input()
         if k == 'm':
             print('q')
