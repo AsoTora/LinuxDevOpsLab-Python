@@ -4,15 +4,13 @@
 import getpass
 import argparse
 import requests
+from requests import exceptions
 import json
 from datetime import datetime
 import calendar
 
-passwd = ''
-user = 'octocat'
-repo = 'Hello-World'
 api_url = 'https://api.github.com'
-repos_url = 'https://api.github.com/users/%s/repos'
+repos_url = 'https://api.github.com/repos/%s/repos'
 pulls_url = 'https://api.github.com/repos/%s/%s/pulls'
 pull_url = 'https://api.github.com/repos/%s/%s/pull/%s'
 
@@ -26,43 +24,32 @@ def get_args():
                         help="get user opened pr", action="store_true")
     parser.add_argument('-d', '--day',
                         help="get day of the weel pr was opened on", action="store_true")
-    parser.add_argument('-l', '--lines',
-                        help="get number of lines added to pr", action="store_true")
+    parser.add_argument('-n', '--number',
+                        help="Number of days pr was opened", action="store_true")
     # Positional
-    parser.add_argument('username', help="set github username")
+    parser.add_argument('username', help="set github username", default=None)
+    parser.add_argument('repo', nargs='?', default='Hello-World')
     args = parser.parse_args()
 
+    repo = args.repo
     user = args.username
-    passwd = getpass.getpass()
     return args
 
 
-def retrieve_info():
+def retrieve_info(user, repo):
     with requests.Session() as session:
-        session.auth = ('AsoTora', passwd)
-
+        session.auth = (user, getpass.getpass())
         try:
             pulls = session.get(pulls_url % (user, repo))
-        except requests.exceptions.RequestException as e:
+        except exceptions.HTTPError as e:
             print(e)
-
-        for pull in json.loads(pulls.text):  # TODO: check
-            try:
-                r = session.get(pull_url % (user, repo, pull['number']))
-                additions[pull['number']] = json.loads(r.text)['additions']
-            except requests.exceptions.RequestException as e:
-                additions[pull['number']] = 0
-                continue
-
-        print(additions)
 
     return json.loads(pulls.text)
 
 
 if __name__ == '__main__':
-    additions = {}
     args = get_args()
-    pulls = retrieve_info()
+    pulls = retrieve_info(args.username, args.repo)
 
     for pull in pulls:
         print('Pull Request "{}":'.format(pull['title']))
@@ -75,7 +62,12 @@ if __name__ == '__main__':
             weekday = calendar.day_name[datetime.date().weekday()]
             print("\twas opened on {} {} at {}".format(weekday, datetime.date(), datetime.time()))
 
-        if args.lines:
-            print("\twas added {} lines".format(additions[pull['number']]))
+        if args.number:
+            if pull['closed_at'] is None:
+                print("\tPR is still opened")
+            else:
+                opened = pulls['created_at']
+                closed = pulls['closed_at']
+                print("\tPR was opened {} days".format(str(closed - opened)))
 
         print("\n *** \n")
