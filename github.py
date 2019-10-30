@@ -27,7 +27,7 @@ def get_args():
     parser.add_argument('-n', '--number',
                         help="Number of days pr was opened", action="store_true")
     # Positional
-    parser.add_argument('username', help="set github username", default=None)
+    parser.add_argument('username', help="set github username", required=True)
     parser.add_argument('repo', nargs='?', default='Hello-World')
     args = parser.parse_args()
     return args
