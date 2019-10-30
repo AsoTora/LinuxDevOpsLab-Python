@@ -10,11 +10,6 @@ import random
 import string
 
 
-'''
-ments.
-'''
-
-
 def get_info():
     info = {}
 
@@ -44,7 +39,7 @@ def get_info():
 
     try:
         import yaml
-        with open('data.yaml', 'w') as f:
+        with open('data.yaml', 'a') as f:
             yaml.dump(info, f)
     except ImportError:
         print('yaml is not supported in this env!')
@@ -57,20 +52,8 @@ def randomString(stringLength=10):
 
 
 def write_json(info):
-    list = {}
-
-    if os.path.exists('data.json'):
-        with open('data.json', 'r') as f:
-            list = json.load(f)
-    with open('data.json', 'w') as f:
-        '''
-         I'm not sure about this moment. I use it for optional task and dumping dict of dicts.
-        Otherwise I get non-json format {},{} in data.json file
-        To use normally for 1 run only:
-            json.dump(info, indent=2)
-        '''
-        list[randomString()] = info
-        json.dump(list, f, indent=2)
+    with open('data.json', 'a') as f:
+        json.dump(info, f, indent=2)
 
 
 if __name__ == '__main__':
