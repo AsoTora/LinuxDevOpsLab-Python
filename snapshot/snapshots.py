@@ -12,8 +12,6 @@ time_format = "%Y-%m-%d-%H-%M"
 
 
 class SystemInfo():
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
 
     def CpuInfo(self):
         return str(psutil.cpu_percent()) + '%'
@@ -135,7 +133,7 @@ def run():
 
     while True:
         if params['output'] == 'console':
-            print('SNAPSHOT ' + str(c) + ': ' + time.strftime(time_format) + "\n")
+            print('SNAPSHOT ', str(c), ': ', time.strftime(time_format), "\n")
             print(SystemInfo())
 
         elif params['output'] == 'txt':
