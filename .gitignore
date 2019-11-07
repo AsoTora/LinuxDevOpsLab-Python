@@ -106,9 +106,5 @@ venv.bak/
 #pycharm
 .idea/
 
-# personal folder
-Personal/
-Hometask*
-
 # code
 .vscode

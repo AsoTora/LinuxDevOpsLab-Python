@@ -1,0 +1,12 @@
+apache_vhosts:
+- servername: www.shvedau.local
+  documentroot: /www/shvedau
+  serveradmin: admin@shvedau.local
+  dirpath: "/usr/local/httpd/htdocs"
+  port: 443
+  
+- servername: www.shvedau2.local
+  documentroot: /www/shvedau2
+  serveradmin: admin@shvedau2.local
+  dirpath: "/usr/local/httpd/htdocs"
+  port: 80
